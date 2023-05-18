@@ -147,9 +147,10 @@
 
       <!-- added div#buttons -->
       <div id="buttons">
-      <button id="connect-button" type="button">Connect</button>
-      <button id="talk-button" type="button">Start</button>
-      <button id="destroy-button" type="button">Destroy</button>
+      <input type="text" id="text" name="text" placeholder="請問..." style="font-size: 20px; text-align: left;">
+      <button id="talk-button" type="button">送出</button><br><br><br>
+      <button id="connect-button" type="button">重新連線</button>
+      <button id="destroy-button" type="button">結束通話</button>
     </div>
   
     <!-- added div#status -->
@@ -163,6 +164,11 @@
   </div>
 
   <script type="module" src="./index.js"></script>
+  <script>
+    window.onload = function () {
+      document.getElementById("connect-button").click();
+    }
+  </script>
 
 
 </body>

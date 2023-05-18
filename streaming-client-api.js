@@ -31,7 +31,7 @@ connectButton.onclick = async () => {
     method: 'POST',
     headers: {'Authorization': `Basic ${DID_API.key}`, 'Content-Type': 'application/json'},
     body: JSON.stringify({
-      source_url: "https://d-id-public-bucket.s3.amazonaws.com/or-roman.jpg"
+      source_url: "https://x1001000-linebot-content.s3.ap-east-1.amazonaws.com/GPT-LightSPA/whitewhite.png"
     }),
   });
 
@@ -61,14 +61,27 @@ const talkButton = document.getElementById('talk-button');
 talkButton.onclick = async () => {
   // connectionState not supported in firefox
   if (peerConnection?.signalingState === 'stable' || peerConnection?.iceConnectionState === 'connected') {
+
+    const chatResponse = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {'Authorization': 'Bearer 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', 'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        "model": "gpt-3.5-turbo",
+        "messages": [{"role": "user", "content": document.getElementById('text').value}]
+      }),
+    });
+    const chat = await chatResponse.json();
     const talkResponse = await fetch(`${DID_API.url}/talks/streams/${streamId}`,
       {
         method: 'POST',
         headers: { Authorization: `Basic ${DID_API.key}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({
           'script': {
-            'type': 'audio',
-            'audio_url': 'https://d-id-public-bucket.s3.us-west-2.amazonaws.com/webrtc.mp3',
+            "type": "text",
+            "provider": {
+                "type": "microsoft",
+                "voice_id": "HsiaoChen"},
+            "input": chat['choices'][0]['message']['content']
           },
           'driver_url': 'bank://lively/',
           'config': {
