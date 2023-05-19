@@ -21,7 +21,7 @@ const signalingStatusLabel = document.getElementById('signaling-status-label');
 const connectButton = document.getElementById('connect-button');
 connectButton.onclick = async () => {
   if (peerConnection && peerConnection.connectionState === 'connected') {
-    document.getElementById('text').value = '呼叫AI客服';
+    document.getElementById('text').value = '妳好！';
     talkButton.click();
     return;
   }
