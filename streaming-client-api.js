@@ -21,6 +21,8 @@ const signalingStatusLabel = document.getElementById('signaling-status-label');
 const connectButton = document.getElementById('connect-button');
 connectButton.onclick = async () => {
   if (peerConnection && peerConnection.connectionState === 'connected') {
+    document.getElementById('text').value = '呼叫AI客服';
+    talkButton.click();
     return;
   }
 
@@ -61,15 +63,23 @@ const talkButton = document.getElementById('talk-button');
 talkButton.onclick = async () => {
   // connectionState not supported in firefox
   if (peerConnection?.signalingState === 'stable' || peerConnection?.iceConnectionState === 'connected') {
+    // read abc.csv
+    const csv = await fetch('programs.csv')
+      .then(response => response.text())
 
     const chatResponse = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {'Authorization': 'Bearer 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', 'Content-Type': 'application/json'},
       body: JSON.stringify({
         "model": "gpt-3.5-turbo",
-        "messages": [{"role": "user", "content": document.getElementById('text').value}]
+        "messages": [
+          {"role": "system", "content": `你是緯來電影台AI客服,你會簡短回答節目相關問題，現在是台北時間5月19日上午11時，本週節目表如下：\n${csv}`},
+          {"role": "user", "content": document.getElementById('text').value}
+        ]
       }),
     });
+    // after onclick, clear the text box
+    document.getElementById('text').value = '';
     const chat = await chatResponse.json();
     const talkResponse = await fetch(`${DID_API.url}/talks/streams/${streamId}`,
       {
