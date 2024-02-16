@@ -33,7 +33,7 @@ connectButton.onclick = async () => {
     method: 'POST',
     headers: {'Authorization': `Basic ${DID_API.key}`, 'Content-Type': 'application/json'},
     body: JSON.stringify({
-      source_url: "https://x1001000-linebot-content.s3.ap-east-1.amazonaws.com/GPT-LightSPA/whitewhite.png"
+      source_url: "https://x1001000-public.s3.ap-northeast-1.amazonaws.com/d-id/ftv.jpg"
     }),
   });
 
