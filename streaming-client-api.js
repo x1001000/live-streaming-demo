@@ -74,7 +74,7 @@ talkButton.onclick = async () => {
       body: JSON.stringify({
         "model": "gpt-3.5-turbo",
         "messages": [
-          {"role": "system", "content": `你是神仙千里眼，你喜歡跟人們說媽祖的故事`},
+          {"role": "system", "content": `你是傳說中的千里眼，與信眾用文言文聊媽祖信仰是你的使命`},
           {"role": "user", "content": document.getElementById('text').value}
         ]
       }),
