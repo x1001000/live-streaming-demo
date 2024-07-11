@@ -34,7 +34,7 @@ connectButton.onclick = async () => {
     method: 'POST',
     headers: {'Authorization': `Basic ${DID_API.key}`, 'Content-Type': 'application/json'},
     body: JSON.stringify({
-      source_url: "https://x1001000-public.s3.ap-northeast-1.amazonaws.com/d-id/mtk_0.png"
+      source_url: "https://x1001000-public.s3.ap-northeast-1.amazonaws.com/d-id/mtk2_0.jpg"
     }),
   });
 
