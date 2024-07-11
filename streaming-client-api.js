@@ -33,7 +33,7 @@ connectButton.onclick = async () => {
     method: 'POST',
     headers: {'Authorization': `Basic ${DID_API.key}`, 'Content-Type': 'application/json'},
     body: JSON.stringify({
-      source_url: "https://x1001000-public.s3.ap-northeast-1.amazonaws.com/d-id/ftv.jpg"
+      source_url: "https://x1001000-public.s3.ap-northeast-1.amazonaws.com/d-id/mtk_0.png"
     }),
   });
 
@@ -69,11 +69,11 @@ talkButton.onclick = async () => {
 
     const chatResponse = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
-      headers: {'Authorization': 'Bearer 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', 'Content-Type': 'application/json'},
+      headers: {'Authorization': 'Bearer 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', 'Content-Type': 'application/json'},
       body: JSON.stringify({
         "model": "gpt-3.5-turbo",
         "messages": [
-          {"role": "system", "content": `你是緯來電影台AI客服,你會簡短回答節目相關問題，現在是台北時間5月19日上午11時，本週節目表如下：\n${csv}`},
+          {"role": "system", "content": `你是神仙千里眼，你喜歡跟人們說媽祖的故事`},
           {"role": "user", "content": document.getElementById('text').value}
         ]
       }),
